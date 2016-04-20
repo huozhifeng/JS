@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        body, div, span {
+            margin: 0;
+            padding: 0;
+            font-family:cursive;
+        }
+
+        .wrap {
+            width: 500px;
+            height: 50px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: darkgreen;
+            margin: 100px auto;
+            background: -webkit-radial-gradient(#dddddd,yellow,blueviolet);
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="wrap">距离考试时间还有&nbsp;
+    <span id="timeSpan">01:06:56</span>
+</div>
+
+
+</body>
+</html>
+<script>
+    /*
+     *   1 获取距离目标时间点的时间
+     *   2 把span的innerHtml重新赋值
+     *
+     * */
+    function daojishi(){
+        var targetTime = new Date('2016/04/06 23:59:59'); //目标时间,开始考试的时间
+        var curTime = new Date(); //获取的当前的时间
+        //分别获取目标时间和当前时间距离1970年1月1日凌晨的毫秒数
+        var targetTime1970 = targetTime.getTime(); // 目标时间距离1970的ms数
+        var curTime1970 = curTime.getTime();  // 当前时间距离1970年的ms数
+        //当前时间距离目标时间的ms数
+        var durationTime = targetTime1970 - curTime1970; // 当前时间距离目标时间的剩余毫秒数
+        var hours = Math.floor(durationTime / (1000 * 3600)); //获取的是时间间隔包含的小时数，需要向下取整
+
+        //接下来要获取分钟：分钟需要把小时所包含的毫秒数去掉。然后再换算成分钟
+
+        var min = Math.floor((durationTime - hours * 3600 * 1000) / (1000 * 60)); //分子：分钟所占用的ms数 = 总的时间间隔 - 小时所占用的ms数，  分母：把ms换成分钟
+
+        //求秒
+        var second = Math.floor((durationTime - hours * 3600 * 1000 - min * 60 * 1000) / 1000);
+        //01:06:56
+        var str = addZero(hours) + ':' + addZero(min) + ':' + addZero(second);
+        document.getElementById('timeSpan').innerHTML = str;
+    }
+
+
+    function addZero(num) {
+        return num >= 10 ? num : '0' + num;
+    }
+    setInterval(function (){
+        daojishi();
+    },1000)
+
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style>
+        body,div,ul,li{ margin: 0;padding: 0; list-style: none;}
+        .outer{ width: 600px; padding: 10px; border: 1px solid #ccc; margin: 50px auto; border-radius: 5px; }
+        .outer li{ height: 30px; line-height: 30px; text-align: center; font-size: 20px; font-weight: bold; color: red; cursor: pointer; -webkit-user-select: none; }
+       /* .outer li:hover{
+            background: black;
+        }*/
+        .c1{
+            background: pink;
+        }
+        .c2{
+            background: blue;
+        }
+        .hover{
+            background: black;
+        }
+
+    </style>
+</head>
+<body>
+<div id="outer" class="outer">
+    <ul>
+        <li class="c1">111111111111111111111111111111111</li>
+        <li>222222222222222222222222222222222</li>
+        <li>333333333333333333333333333333333</li>
+        <li>444444444444444444444444444444444</li>
+        <li>555555555555555555555555555555555</li>
+        <li>666666666666666666666666666666666</li>
+        <li>777777777777777777777777777777777</li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    /*
+     *  步骤：目的给每一个li分别不同的c1和c2样式
+     *        1 找到所有的li并且放到一个容器，赋值给一个变量
+     *        2 分别给每一个 li加上不同的样式,并且奇数行和偶数行不能相同,所以我们用循环添加 for
+     *
+     * */
+
+    //先获取li的父级元素outer
+    var outer = document.getElementById('outer'); //通过id获取元素,在制定范围内
+    //console.log(outer);
+    //console.log(typeof outer);
+    //获取我们outer里的所有li元素
+    var lis = outer.getElementsByTagName('li'); //通过标签名在制定范围内获取元素，并且返回值是一个HTMLCollection,元素集合.也是一个类数组,并且它自带一个默认的属性叫length，length的值是有多少个元素.每一组还有属性名是数字，我们管这个叫索引,索引从0开始,最后一个的索引就是length-1
+
+    console.dir(lis);
+    for(var i=0; i<lis.length; i++){ //7
+
+        // lis[i]
+        // lis[1]
+        // lis[3]
+        //lis[i].className = 'c1';
+        if(i%2){
+            lis[i].className = 'c1';
+        }else{
+            lis[i].className = 'c2';
+        }
+
+        //给每一个li添加一个属性用来保存它们自己的class
+        lis[i].selfClasName = lis[i].className; //这个属性的名字任意只要你喜欢,自定义属性
+        //console.dir(lis[i]);
+
+        //console.log(typeof lis[i])
+        //给每一个li都约定好一个鼠标滑过的事件，当鼠标滑过的时候事件触发。
+        lis[i].onmouseover = function (){
+            //console.log(i);
+            //lis[i].className = 'hover';//我们这里的i出问题了...
+            console.log(this);
+            this.className = 'hover';
+        }
+        lis[i].onmouseout = function (){
+            this.className = this.selfClasName; //我们此处不能确定是哪一个class，我们能确定，它一定是它原来的类样式
+        }
+
+    }
+
+    /*
+    * 当鼠标滑过哪个li，就把这个li的class换成hover，当鼠标离开的时候原来是哪个class要换成原来的
+    *
+    * */
+
+
+
+
+
+</script>

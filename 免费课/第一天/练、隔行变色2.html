@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link rel="stylesheet" href="css/index.css"/>-->
+    <style>
+        *{ margin: 0;  padding: 0;}
+        ul{list-style: none;width:500px;height:400px;margin: 50px auto;  border: 1px solid yellow;border-radius:5px;  overflow: hidden;}
+        li{height: 30px;  line-height: 30px;  overflow:hidden;  text-overflow: ellipsis;  white-space: nowrap;  }
+        .c0 {  background-color: aqua  }
+        .c1 {  background-color: yellow  }
+        .c2 {  background-color: red  }
+    </style>
+</head>
+<body>
+<ul id="oUl">
+    <li>制转换为布尔类型 自身做布尔运算 除了以下5个为假 其他都为真制转换为布尔类型 算 除了以下5个为假 其他都为真</li>
+    <li>制转换为布尔类型 自身做布尔运算 除了以下5个</li>
+    <li>制转换为布尔类型 自身做布尔运算 除了以下5个为假 其他都为真</li>
+    <li>制转换为布尔类型 自身做布尔运算</li>
+    <li>制转换为布尔类型 自身做布尔运算 除了以下5个为假 其他都为真</li>
+    <li>制转换为布尔类型 自身做布尔运算 除了以下5个为假 其他都为真</li>
+</ul>
+<script>
+    var oUl = document.getElementById("oUl");
+    var oLis = oUl.getElementsByTagName('li');
+    for (var i = 0; i < oLis.length; i++) {
+        var li = oLis[i]
+        if (i % 2) {li.className = 'c1'}
+        else {li.className = 'c0';}
+        li.zhufeng = li.className;
+        li.onmouseover = function () {this.className = 'c2'}
+        li.onmouseout = function () {this.className = this.zhufeng;  } // this.className='c'+(i%2);
+    }
+    /*
+     * 先拿到所有的li 找到奇数 偶数行 分别给不同的样式
+     * 1)要操作谁 就获取谁
+     * 2}"".gtElementsByTagName("")
+     * 通过gtElementsByTagName拿到的是集合（类数组） ，
+     * 每一项都有一个编号 ，最后一项length-1. 就算只有一个数组 也要通过[索引]去取 或item(索引)
+     * id前只能放document
+     * 3）通过袁术.className添加class名字
+     * 4）经过li
+     * 当鼠标移动上去的时候添加一个经过的样式，移开时的样式
+     * */
+
+</script>
+</body>
+</html>

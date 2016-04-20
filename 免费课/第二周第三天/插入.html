@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var a = [2,3,5,1,4,6];
+    /*
+    *   思想：把数组第一项
+    * */
+    /*function insertSrot(ary){
+        var newA = [];
+        newA.push(ary[0]); //
+        for(var i=1; i<newA.length; i++){
+            var cur = ary[i];
+            for(var j=0; j<newA.length;){
+                if(cur > newA[j]){
+                    j++; //但是有可能到最后还比最后一个大。
+                    if(j == newA.length){
+                        newA.push(cur);
+                    }
+                }else{
+                    newA.splice(j+1,0,cur);
+                    j = newA.length;
+                }
+            }
+        }
+        return newA;
+    }
+    console.log(insertSrot(a));*/
+    function insertSrot(ary){
+        var newAry = [];
+        newAry.push(ary[0]);
+        for(var i=1; i<ary.length; i++){
+            debugger;
+            var cur = ary[i];
+            for(var j=newAry.length-1; j>=0;){
+                if(cur<newAry[j]){
+                    j--;
+                    if(j == -1){
+                        newAry.unshift(cur);
+                    }
+                }else{
+                    newAry.splice(j+1,0,cur);
+                    j=-1; //找到了位置就不要循环下去了
+                }
+            }
+        }
+        return newAry;
+    }
+    var a = [1,5,4,3,2];
+    console.log(insertSrot(a))
+
+
+
+
+</script>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+   /* function fn(){
+        var i=3;
+        return function (n){
+            console.log(n+(++i));
+        }
+
+    }
+    var f=fn();
+    f(4);        //8
+    f(8);        //13
+    fn()(12);    //16
+    fn()(26);    //30
+    f(12);       //18*/
+
+
+    //360面试题
+  /*  var num = 20;
+    var obj = {
+    num:30,
+    fn:(function (num) {
+    this.num *=3;          //this=window
+    num +=20;
+    var num=45;            //因为和形参是相同的，所以不被预解释
+    return function () {
+    this.num *=4;
+    num +=20;
+    console.log(num);
+
+    }
+    })(this.num)
+    }
+    var fn=obj.fn;
+    fn();                                //65
+    obj.fn();                            //85
+    console.log(window.num,obj.num);     //240 ,120*/
+
+   /* var number = 2;
+    var obj = {
+        number : 4,
+        fn1 : (function () {
+            this.number *= 2;
+            number = number*2;
+            var number = 3;
+            return function(){
+                this.number *=2;
+                number *=3;
+                alert(number);
+            }
+        })(),
+        db2:function(){this.number *=2}
+    };
+    var fn1 = obj.fn1;
+    alert(number);                //4
+    fn1();                        //9
+    obj.fn1();                    //27
+    alert(window.number);         //8
+    alert(obj.number);            //8*/
+
+
+ /*  var number = 2;
+   var obj = {
+       number: 4,
+       fn1: (function () {
+           this.number *= 2;
+           number = number * 2;
+           var number = 3;
+           return function () {
+               this.number * 2;
+               number *= 3;
+               alert(number);
+           }
+       })()
+   };
+   var fn1 = obj.fn1;
+   alert(number );
+   fn1();
+   obj.fn1();
+   console.log(window.number, obj.number  )*/
+
+
+
+
+
+</script>
+</body>
+</html>

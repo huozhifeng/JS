@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style></style>
+</head>
+<body>
+<!--
+    document object model
+        DOM中获取元素的常用方法
+            1 document.getElementById('id') 通过id获取元素
+                ps id要区分大小写 表单元素中的name低版本ie中会当作id使用
+            2 document.getElementsByTagName('tagName') 通过标签名获取一组元素,这是一个元素的集合，是集合我们就要注意索引的问题。获取具体的某一个要通过索引值去获取
+            3 document.getElementsByClassName('classname'); 通过类名获取一组元素，低版本ie不兼容,同样要注意索引的问题.
+            4 document.getElementsByName(); 通过name属性去获取 同样存在兼容性问题
+            5 document.documentElement html
+            6 document.body body
+            7 document.querySelector()  //语法jq 移动端  有兼容性问题
+            8 document.querySelectorAll() //移动端 jquery选择器的用法
+            ps: 获取网页的宽度和高度 document.documentElement || document.body.clientHeight
+
+             节点类型
+
+                  nodeType    nodeName         nodeValue
+             元素   1         大写标签名        null
+
+             文本   3          #text            文本内容
+
+             注释   8         #comment            注释内容
+
+             document  9       #document         null
+
+            dom中的节点关系属性
+                childNodes所有的孩子节点,包含换行，空格, 注释等
+                children  所有的元素节点
+                firstChild 第一个孩子
+                fistElementChild  第一个元素孩子
+                lastChild  最后一个孩子
+                lastElementChild
+                parentNode 父亲节点
+                previousSibling previousElementSibling
+                nextSibling  nextElementSibling
+
+            dom节点的增删改
+                增加
+                    document.createElement('span')
+                    appendChild 父元素调用，参数是要添加的元素，添加到父元素的末尾
+                    insertBefore(a,b) a你要把谁插入  b插入谁前面
+                                        insertAfter  //闭门造车
+                    removeChild 参数是要删除的元素
+                    replaceChild(a,b) a 谁来替换  b替换谁
+                    cloneNode()  克隆节点
+
+           dom节点属性
+                    setAttribute
+                    getAttribute
+                    removeAttrbute
+
+
+
+-->
+   <!-- <input type="radio" name="gender" value="1" checked/>
+    <input type="radio" name="gender" value="1"/>-->
+
+    <div id="div1" class="div">
+        <!--kkkkkk-->
+        <ul>
+            <li id="li1"></li>
+            <!--adsf-->
+            <li id="li2"></li>
+            <li></li>
+        </ul>
+        <p></p>
+    </div>
+</body>
+</html>
+<script>
+    //console.log(document.getElementsByName('gender'));
+    var oLis = document.querySelectorAll('.div li');
+    var input = document.querySelectorAll('input[type=radio]');
+    //console.dir(input)
+    //console.dir(oLis);
+    //console.log( document.documentElement || document.body.clientHeight);
+    /*console.dir(document.getElementById('div1').childNodes);
+    console.dir(document.getElementById('div1').childNodes[0].nodeType);
+    console.dir(document.getElementById('div1').childNodes[0].nodeName);
+    console.dir(document.getElementById('div1').childNodes[0].nodeValue);*/
+
+   /* function myChildren(ele,tagName){ //参数
+        var nodes = ele.childNodes;
+        // tagName = tagName.toUpperCase();
+        var a = [];
+        for(var i=0; i<nodes.length; i++){
+            if(nodes[i].nodeType == 1){
+                a.push(nodes[i]);
+            }
+        }
+        return a;
+    }
+    var oDiv = document.getElementById('div1');
+    console.log(oDiv.firstElementChild);
+    console.log(oDiv.parentNode);
+    //console.log(oDiv.lastChild);
+    console.log(oDiv.previousSibling);*/
+
+    /*
+    *  模拟previousElementSibling
+    * */
+    var li2 = document.getElementById('li2');
+    function prevEleSingbling(ele){ //li2
+        //获取ele的previousSibling
+        //debugger;
+        var prev = ele.previousSibling; // <li></li>
+        while(prev && prev.nodeType != 1){
+            prev = prev.previousSibling;
+        }
+        return prev;
+    }
+    console.log(prevEleSingbling(li2));
+    //思考题 prevAllEleSinbling
+    /*var oP = document.createElement('p');  //这回并不在文档中
+    oP.style.width = '100px';
+    oP.style.height = '50px';
+    oP.style.backgroundColor = 'red';
+    oP.innerHTML = '<span>我是创建来的</span>';
+    //console.log(oP.innerText);
+    document.body.appendChild(oP);
+    oP.setAttribute('nameba','tianxi');
+    console.log(oP.getAttribute('nameba'));
+    oP.removeAttribute('nameba');
+    console.log(oP);*/
+
+</script>

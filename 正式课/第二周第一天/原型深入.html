@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    /*
+    * Dom 获取元素
+    *    1 通过标签获取来的是HtmlCollection,通过标签获取来的都是这个类的一个实例
+    *    2 所有div都是HTMLDivElement这个类的一个实例 ==>HTMLElement  ==>Element  ==>Node ==>EventTarget ==>Object
+    *    3 getElementsByName 和getElementById 是定义在document这个家族上的
+    * 函数角色
+    *    1 普通函数：
+    *    2 构造函数（类）:new 实例     this是当前实例   return问题
+    *    3 任何一个函数都是Function这个类的一个实例、
+    *
+    */
+     var p = document.getElementsByName('p'); //通过name获取来的
+     var oDiv = document.getElementById('div1');
+     var op = oDiv.getElementsByTagName('p'); //通过tag获取来的
+     console.dir(p);                        //p是NodeList的一个实例
+     console.dir(op);                      //op是HtmlCollection这个类的一个实例
+     //console.dir({});
+     //console.dir([]);
+     console.dir(oDiv);
+                   //所有的div都是HTMLDivElement这个类的一个实例==>HTMLElement==>Element==>Node==>EventTarget==>Object
+     var sP = document.getElementById('p'); //通过oDiv来查找getElementsByName的属性，并且让这个属性的值去执行，传入了一个'p'作为参数
+     console.dir(sP);
+
+</script>
+</body>
+</html>

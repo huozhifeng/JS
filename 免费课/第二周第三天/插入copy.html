@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   插入排序: 依次把数组中每一项都拿出来，当函数运行开始我就拿出来一个，放到一个新的数组里，当从数组中取第二个的时候，跟新的数组里已经有的项目分别去比较，如果小于新数组的当前项就放在左面，大于就放右面,直到循环结束把新的数组返回
+    *
+    * */
+    var a  = [3,4,2,1,5,7,6];
+    function insertSort(ary){
+        //首先先声明一个新数组,用来存放排序好的项
+        var newAry = []; //new Array()
+        newAry.push(ary[0]); //先把第一项放到新数组里,把3放到新数组里
+        // newAry = [3]
+        for(var i= 1; i<ary.length; i++){ //分别把数组里的每一项拿出来
+            //把拿出来的数组想和新数组里的项目去比较，如果小于的放在左面，大于放右面
+            var cur = ary[i];
+            //这个for循环是新数组的循环，分别对比位置
+            for(var j=newAry.length-1; j>=0; /*j--*/){ //倒着循环
+                if(cur < newAry[j]){ //假如这会cur = 2， newAry = [3,4]
+                    //比如：这会新数组里存在[3,4],拿当前项2去和4和3去比较
+                    j--;
+                    if(j == -1){
+                        newAry.unshift(cur);
+                    }
+                }else{ //大于放在newAry[j]的后面
+                    newAry.splice(j+1,0,cur); //把cur放在这个j的后面
+                    j = -1; //正确的位置已经找到，循环就没有必要执行下去了，人为破坏循环的条件
+                }
+            }
+        }
+        return newAry;
+    }
+    console.log(insertSort(a));
+
+
+</script>
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+   <div id="div1"></div>
+<script>
+    /*
+    * this   我们主要研究函数里的this
+    *   1 给元素绑定事件，当事件触发的时候，this就是事件触发的元素，
+    *   2 this是谁跟函数在哪里定义和哪里执行没关系，就看函数的主体是谁，其实也就是看函数执行的时候“.”前面是谁，this就是谁
+    *   3 自执行函数的this是window，无论在哪都是window。
+    *   4 在构造函数中this是当前实例
+    *   5 bind和call和apply都会强制改变this。
+    *   ····································
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+  /*  document.getElementById('div1').onclick=function(){
+        console.log(this);
+    }*/
+   /*
+    function fn(){
+        console.log(this);
+    }
+    window.fn();  */
+
+    var obj={
+        fn:fn
+    }
+    obj.fn();
+
+
+</script>
+</body>
+</html>

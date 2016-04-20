@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .box{width: 400px;margin:30px auto;padding:20px;border: 1px solid blue;border-radius: 4px;box-shadow: 3px 3px 3px 3px red;font-family: "Microsoft YaHei", simSum;}
+        .box table{}
+        .box table thead{height:30px;line-height: 30px;text-align: center;background: lightgreen}
+        .box table thead th,.box table tbody td{width: 100px;}
+        .box table tbody td{text-align: center;height: 30px;}
+        .bg{background-color: pink;}
+        .cursor{cursor: pointer;}
+
+    </style>
+</head>
+<body>
+<!--
+    工作中遇到的问题：
+      1 由于网页内的元素变化，并且元素改变引起的bug考虑是不是有可能dom映射
+      2 网页内元素事件丢失考虑是不是由于innerHTML引起的bug
+-->
+
+   <div class="box">
+       <table cellspacing="0" cellpadding="0" id="tab">
+           <thead>
+               <tr>
+                   <th>姓名</th>
+                   <th class="cursor">年龄</th>
+                   <th>伤害值</th>
+                   <th>性别</th>
+               </tr>
+           </thead>
+           <tbody>
+                <tr>
+                    <td>任盈盈</td>
+                    <td>23</td>
+                    <td>100</td>
+                    <td>女</td>
+                </tr>
+                <tr>
+                    <td>岳不群</td>
+                    <td>20</td>
+                    <td>120</td>
+                    <td>男</td>
+                </tr>
+           </tbody>
+       </table>
+   </div>
+
+
+<script src="utils.js"></script>
+
+<script>
+
+    var tab = document.getElementById('tab');
+    var thead = tab.tHead;         //   头
+    var headTr = thead.rows[0];   //    头里的行
+    var ths = thead.cells;        //    头里面的列
+    var tbody = tab.tBodies[0];   //    主体
+    var bodyTrs = tbody.rows;     //    主体里所有的行
+
+    //给表格动态绑定数据  1 通过ajax获取数据 async Javascript and XML
+    /*
+    * ajax: 1 创建一个xhr对象也是请求对象
+    *        var xhr = new XMLHttpRequest()
+    *        请求方式：get和post
+    *
+    *        true：异步    false：同步   请求接口：到哪拿数据
+    *
+    * */
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('get','data.txt',false);        //打开这个请求对象 param1：请求方式 param2：请求接口 param3：同步还是异步
+    xhr.onreadystatechange = function () {   //实时监听请求状态，当请求成功或者失败的时候，都会发生状态的改变。并且返回相应状态码，我们通过判断状态码的值就知道是否请求成功。如果请求成功要做相应的对数据的处理。
+        if(xhr.readyState == 4 && xhr.status ==200 ){
+            console.log(xhr.responseText);                 //响应文本
+            res = eval(xhr.responseText);  //相当于添加全局的  动态数据
+        }
+    }
+    xhr.send(null);                                //发送请求
+    console.log(res);                             //已经在全局的window下存在了res的变量
+
+    /*
+    * 数据动态绑定 把通过利用ajax获取过来的数据和我们的table表格绑定起来
+    * */
+    function bindDate(){
+        var frg = document.createDocumentFragment();            //创建文档碎片
+        for(var i=0;i<res.length;i++){
+            var tr = document.createElement('tr');              //给一条数据创建一个行
+                                                             //需要for in循环取遍历数据中的属性个数，
+            var cur = res[i];    // 每次循环的那个当前对象，
+
+             for(var key in cur){
+                 var td = document.createElement('td');
+                 td.innerHTML = cur[key];
+                 tr.appendChild(td);
+             }
+            frg.appendChild(tr);
+        }
+
+        tbody.appendChild(frg);
+        frg = null;
+    }
+    bindDate();
+
+    //隔行变色
+    function changColor(){
+        for(var i=0; i<bodyTrs.length;i++){
+            bodyTrs[i].className = i%2 ? 'bg':null;
+        }
+    }
+
+    changColor();
+
+    //点击年龄 实现排序
+    function sort(){
+        var ary= utils.listToArray(bodyTrs);
+        ary.sort(function(a,b){
+            return t
+        });
+    }
+
+    //绑定点击事件
+
+    var cursorThs= tab.getElementsByClassName('cursor');     //我以后要把带cursor这个class的表头
+    for(var i=0;i<cursorThs.length;i++){                 //
+        var cru = cursorThs[i];
+        cur.onclick =function(){
+            sort.call(this);                //这个this是当前点击的元素
+        }
+    }
+
+
+</script>
+</body>
+</html>

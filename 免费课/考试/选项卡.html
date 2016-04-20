@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{  margin: 0;  padding: 0;  font-size: 18px;  }
+        #tab{  position: absolute;
+            top: 50%;
+            left:50%;
+            margin-top: -50px;
+            margin-left: -250px;
+            width: 500px;
+            height: 100px;
+        }
+        #tab ul li{
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid red;
+            text-align: center;
+            border-radius: 2em;
+            cursor: pointer;
+        }
+        #tab div{
+            display: none;
+            width: 400px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border: 1px solid black;
+            margin-top: -1px;
+            position: relative;
+        }
+        #tab li.active{
+            background: yellow;
+        }
+        #tab div.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="active">新闻</li>
+        <li>热点</li>
+        <li>小说</li>
+    </ul>
+    <div class="active">新闻内容啊啊</div>
+    <div>热点内容</div>
+    <div>小说内容</div>
+
+</div>
+<script>
+    var oTab=document.getElementById('tab');
+    var oLis=oTab.getElementsByTagName('li');
+    var oDivs=oTab.getElementsByTagName('div');
+    for(var i=0;i<oLis.length;i++){
+        oLis[i].shenfen=i;
+        oLis[i].onmouseover=function(){
+            for(var j=0;j<oLis.length;j++){
+                oLis[j].className="";
+                oDivs[j].className="";
+            }
+            this.className="active";
+            oDivs[this.shenfen].className="active";
+        }
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

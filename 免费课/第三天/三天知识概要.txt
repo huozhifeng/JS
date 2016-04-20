@@ -1,0 +1,18 @@
+1 js引入方式  3
+2 js组成 bom dom（2） ecmascript
+3  ECMASciript
+	变量和数据类型
+		命名规范 
+		数据类型
+			基本 ？？
+				number boolean string null（没获取到） undefined(1没有这个对象属性的时候，2函数没有返回值默认是 3 参数没传   。。。) 
+			引用？？ 区别
+				对象 {} 注意中括号添加属性的用法
+				函数
+					function 引用类型 参数 arguments return ... 参数也可以是对象
+			基本和引用的判断  4 
+
+	语法和操作语句 
+		三个判断 if else   switch case break default 三元运算符   &&
+		三个循环  for continue break    for in    while   
+	隔行变色 ==》function  事件  自定义属性  this ==> this有5种用法，在事件这是第一种  length

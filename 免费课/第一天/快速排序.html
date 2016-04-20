@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var a =[6,5,2,4,1,3,7,8];
+  /*  找到数组的中间项 然后拿出来和其他项比较，把小于中间项基准点的放到左边一个数组里，把大于的放到右边的数组里
+然后继续分别把左边的和右边的继续执行此操一直到拆分开的数组长度到1或者0为止  可以联想到递归思想 ，在return的时候调用自己，到最后拼接起来*/
+    function quickSort(ary){
+        if(ary.length<=1){        //递归函数截止条件
+            return ary;
+        }
+        var pointIndex=Math.floor(ary.length/2);           //获取数组基准点中间项的索引
+        var pointValue=ary.splice(pointIndex,1)[0];
+        var left =[],right = [];
+        for(var i=0;i<ary.length;i++){
+            var cur =ary[i];
+            cur <pointValue ? left.push(cur) : right.push(cur);
+        }
+        return quickSort(left).concat([pointValue],quickSort(right));
+    }
+    console.log(quickSort(a));
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

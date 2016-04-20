@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, div, span {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 500px;
+            height: 50px;
+            border: 2px solid #ccc;
+            border-radius: 1em;
+            line-height: 50px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: darkgreen;
+            margin: 100px auto;
+            background: -webkit-radial-gradient(#ffffff,yellow,blueviolet);
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">距离考试时间还有&nbsp; <span id="timeSpan"></span>
+</div>
+</body>
+</html>
+<script>
+    <!--
+    //   1 获取距离目标时间点的时间
+    //   2 把span的innnerHtml重新赋值
+    //   3 分别获取目标和当前距离1970/1/1凌晨的毫秒数
+    //   4 当前时间距离目标时间的毫秒数
+    -->
+    function daojishi() {
+        var targetTime = new Date('2016/04/06 23:59:59');  // 目标时间
+        var curTime = new Date();                         //当前的时间
+        var targetTime1970 = targetTime.getTime();
+        var curTime1970 = curTime.getTime();
+        var durationTime = targetTime1970 - curTime1970;
+        var hours = Math.floor(durationTime / (1000 * 3600));    //获取的是时间间隔包含的 小时数 需要向下取整
+        //  console.log(hours);
+        var min = Math.floor((durationTime - hours * 3600 * 1000) / (1000 * 60));  //获取 分钟
+        var second = Math.floor((durationTime - hours * 3600 * 1000 - min * 60 * 1000) / 1000);
+
+        var str = addZero(hours) + ':' + addZero(min) + ':' + addZero(second);
+        document.getElementById('timeSpan').innerHTML = str;
+    }
+    function addZero(num) {
+        return num >= 10 ? num : '0' + num;
+    }
+    setInterval(function () {
+        daojishi()
+    }, 1000)
+</script>
+
+
+
+
+

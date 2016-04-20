@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*预解释：
+     当浏览器开始解析js代码的时候，首先看当前运行的环境（作用域）内带var和function，带var的变量会提前声明（预解释）但是不会被赋值。带function的会提前声明并赋值，带var变量提前声明的时候并不会被赋值，但是有一个默认的undefined值。当代码执行过后才会赋值。
+     1，【var 预解释只看等号左面的变量，并不会看你的值是什么】
+     2，【预解释只发生在当前作用域】
+     【栈 ：运行的内存，（代码运行的环境也是作用域）；  堆 ：存放值的内存】  基本数据类型都存在栈内存里。
+     【在全局作用域下，加var和不加var的区别：】
+     1 是否被提前声明；
+     ==>  2 不加var 就是一个赋值过程，相当于给window添加了一个属性并且赋值
+     3 闭包：当函数运行的时候会产生一个私有的作用域，并且作用域内的变量也是私有的变量。私有变量外面无法访问，把这种函数运行时产生的私有作用域里的私有变量不受外界干扰的机制叫闭包。
+     *函数运行：1 如果有形参是形参赋值 2 预解释  3 代码逐行执行
+     *区别私有变量 还是全局变量：函数运行的时候，函数体内如果有带var就是私有变量，如果是形参也可以理解为一个私有变量。代码执行的时候，首先查找当前运行环境内（组用于，栈）的私有变量，如果有直接用，如果没有去上一级作用域取查找，如果有就哪啦用，如果没有就一直查到顶级的window全局作用域，如果找不到 就报错了。 我们把这种查找机制叫做作用域链。
+     *函数运行时候上一级作用域只和在哪里定义有关系
+     * 【预解释的机制】
+     *    1 无论条件是否成立，都会预解释 【在chrome下 只声明】
+     *    2 带var关键字的只看等号左面的
+     *    3 全局作用域下的自执行函数不被预解释，预解释只发生在当前作用域
+     *    4 return下面的代码仍然会被预解释，永远不执行了  但是跟着return后面的一坨不会被预解释 即使是函数
+     *
+     * */
+
+
+</script>
+<script>
+
+    /* console.log(total);             //undefined
+     var total = 0;
+     function fn(num1, num2) {
+     console.log(total);         //undefined
+     var total = num1 + num2;
+     console.log(total);         //300
+     }
+     fn(100, 200);
+     console.log(total);             //0*/
+
+
+
+
+    //私有 和 全局
+   /* var total=0;
+    function fn(){
+        console.log(total);        //undefined
+        var total = 100;
+    }
+    fn();
+    console.log(total);           //0*/
+
+   /* function fn(){
+        console.log(total);        //total is not defined
+        total = 100;
+    }
+    fn();
+    console.log(total);           //100*/
+
+   /* var total = 0;
+    function fn(){
+        console.log(total);        //0
+        total = 100;
+    }
+    fn();
+    console.log(total);           //100*/
+
+
+
+   /* var sun = function () {
+        console.log(1);
+    }
+    function sun(){
+        console.log(2);
+    }
+    sun();    */                      // 1        先预解释
+
+
+
+
+   /* if (!("num" in window)) {          //false      不管条件是否成立 都要预解释
+        var num = 12;
+    }
+    console.log(num);                //undefined
+
+    sum()                        //  sum is not a function(chrome下)
+    if ("num" in window) {
+        var num = 12;
+        function sum(){console.log(1)};
+    }
+    console.log(num);                //12*/
+
+
+
+    //预解释 匿名函数之函数表达式：把函数定义的部分当做一个值赋给我们的变量。
+   /* fn();                            //fn is not a function
+     var fn=function(){
+     console.log("OK");
+     }
+
+     var fn=function(){
+     console.log("OK");
+     }
+     fn();                            //OK
+
+    g();
+    function g(){return true;};
+    console.log(g());                  //true*/
+
+
+    //查找上级作用域
+ /*   var num=12;
+    function fn(){
+        var num=120;
+        return function () {
+            console.log(num);
+        }
+    }
+    var f=fn();
+    f();                                 //120
+    ~function (){
+        var num=1200;
+        f();                             //120 与在哪执行无关  只与在哪定义有关
+    }();*/
+
+
+    //练习题，匿名函数面试题
+   // debugger;     浏览器chrome执行条件时  只声明不定义
+  /*  f = function (){return true;};
+    g = function (){return false;};
+    (function(){
+        if(g()&&[]==![]){
+            f=function f(){return false;};
+            function g(){return true;}
+        }
+    })();
+    alert(f());
+    alert(g());*/
+
+
+    //练习题，闭包 return
+
+   /* function fn(){alert('我是全局的fn方法')}
+    function fn2(){
+        alert(fn);
+        fn=3;
+        return;
+        function fn(){alert('我是定义在fn2方法里边的')}
+    }
+    fn2();                                      //弹出：function fn(){alert('我是定义在fn2方法里边的')}*/
+
+
+   /* function fn(){alert('我是全局的fn方法')}
+    function fn2(){
+      alert(fn());
+        fn=3;
+        return;
+        function fn(){alert('我是定义在fn2方法里边的')}
+    }
+    fn2();                                         //弹出1：我是定义在fn2方法里边的
+                                                   //弹出2：undefined         //没有return*/
+
+    //练习题 闭包
+  /*  var name='china';
+    var age=5000;
+    (function (chinaName, chinaAge) {
+        var name='珠峰培训'
+        var age=4;
+        alert(chinaName+'有'+chinaAge+'多的历史了。'+name+'有'+age+'多的历史了。');
+    })(name,age);                                   //弹出：china有5000多的历史了。珠峰培训有4多的历史了。*/
+
+
+    //练习题  10/15
+   /* function a(x){return x*2;}
+    var a;
+    alert(a);                                    //弹出：  function a(x){return x*2;}*/
+
+   /* function a(x){return x*2;}
+    var a="珠峰培训";
+    alert(a);                                  //弹出：  珠峰培训*/
+
+
+    //练习题  作用域开辟新空间
+   /* var arr = [1,2,3];
+    function a(b){//b是形参
+        b[0] = 100;
+        console.log(b);                         //[100,2,3]
+        b = [0];
+        b[0] = 120;
+        console.log(b);                         //[120]
+        console.log(arr);                       //[100,2,3]
+    }
+    a(arr);
+    console.log(arr);                            //[100,2,3]*/
+
+
+
+
+
+
+</script>
+</body>
+</html>

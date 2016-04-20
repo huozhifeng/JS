@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    //双循环
+    var a=[1,2,4,7,6,2,4,2,8,1];
+    for(var i=0;i< a.length-1;i++){
+        for(var j=i+1;j< a.length;j++){
+            if(a[j]==a[i]){
+                a.splice(j,1);
+            }
+        }
+    }
+    console.log(a);
+
+
+    //单循环
+  var a=[1,2,3,4,1,2,2,3];
+    var obj={};
+    for(var i=0;i< a.length;i++){
+        var cur=a[i];
+        if(obj[cur]==cur){
+            a.splice(i,1);
+            i--;
+        }else{
+            obj[cur]=cur;
+        }
+    }
+    console.log(a);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

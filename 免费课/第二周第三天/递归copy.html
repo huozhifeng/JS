@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>递归</title>
+</head>
+<body>
+    <!--
+        递归：函数在执行的时候自己调用自己
+
+    -->
+</body>
+</html>
+<script>
+    //求100以内所有不被3整除的和
+   /* var total = 0;
+    for(var i=0; i<=100; i++){
+        if(i%3 !== 0){
+            total += i;
+        }
+    }
+    console.log(total); //3367*/
+    //while
+    /*var total = 0;
+    var i=0;
+    while(i<=100){
+        if(i%3 !== 0){
+            total += i;
+        }
+        i++;
+    }
+    console.log(total);*/
+
+
+    //在一个范围内取值，有的要，有的不要不要的 ==> 递归
+    function sum(n){
+        if(n ===0){ //为了保证这个递归不无限执行下去，我们设置的拦截条件
+            return 0;
+        }
+        if(n%3 === 0){
+            return sum(n-1);
+        }
+        return n + sum(n-1); //100 + 99 + sum(98)
+    }
+    //console.log(sum(100));
+    // 100+ sum(99) ==> 100 + 99 + sum(98) ==> 100 + 99 + 98 + sum(97)+.........1 + sum(0)
+
+    //能被2整除的乘积
+    function chengji(n){
+        if(n === 1){
+            return 1;
+        }
+        if(n%2 !== 0){
+           return chengji(n-1);
+        }
+        return n * chengji(n-1);
+    }
+    //console.log(chengji(10)); //3840
+    //
+   /* var count = 0;
+    window.setInterval(function(){
+        count++;
+        console.log(count);
+        //if(count == 10) return;
+    },1000);*/
+
+    /*var count = 0;
+    var timer = window.setTimeout(function (){
+        window.clearTimeout(timer);
+        count++;
+        console.log(count);
+        timer = window.setTimeout(arguments.callee,1000);
+    },1000);*/
+
+
+
+</script>

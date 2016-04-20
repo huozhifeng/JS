@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <!--
+        递归：当前函数自己调用自己执行
+    -->
+    <script>
+        //实现从1-100之间把所有不能被3整除的数相加
+        var total = 0;
+        for(var i=0; i<=100; i++){
+            if(i%3 !==0){
+                total += i;
+            }
+        }
+        //改成while循环
+        var total = 0;
+        var i = 1;
+        while(i<=100){
+            if(i%3!==0){
+                total += i;
+            }
+            i++;
+        }
+        console.log(total);
+
+        //以后在某一个范围内有的要有的不要，我们第一个想到的就是递归
+
+        function sum(n){
+            return n + sum(n-1); // 在函数的执行过程中，又把函数重新赋值了一个新的参数并且又执行了一遍
+        }
+        var total = sum(100); //需要把sum(100)执行后的结果赋值给total吧==> total = 100 + sum(99) ==> 100 + 99 + sum(98) ==> 100+99+98+sum(97) == > 100+99+98+97+.....+2+1+sum(0); 那么我们加到了0的时候我们就没有必要再加下去了吧，我们是不是要给一个递归停止的条件呀，所以我们需要一个拦截条件
+        function sum(n){
+            if(n == 0){
+                return 0;
+            }
+            return n + sum(n-1);
+        }
+        //我们现在是从100加到了0，我们还没有做3整除的判断
+
+        function sum(n){
+            if(n ===0){
+                return 0;
+            }
+            if(n%3===0){
+                return sum(n-1); //如果n可以被3整出我们就不需要加上n了
+            }
+            return n + sum(n-1);
+        }
+        console.log(sum(100))
+        //10内所有能被2整除的相称
+        function mul(n){
+            if(n === 1){
+                return 1;
+            }
+            if(n%2 !== 0 ){
+                return mul(n-1);
+            }
+            return n * mul(n-1);
+        }
+        console.log(mul(10));
+
+        //递归思想实现setInterval
+       /* var count = 0;
+        var timer = window.setInterval(function (){
+            count++;
+            console.log(count);
+            if(count == 10){
+                clearInterval(timer);
+            }
+        },1000);*/
+
+        //用setTimeout模拟
+        var count = 0;
+        var timer = window.setTimeout(function (){
+            window.clearTimeout(timer);
+            count++;
+            console.log(count);
+            if(count == 10){ return }
+            timer = window.setTimeout(arguments.callee,1000);
+        },1000);
+
+    </script>
+</body>
+</html>

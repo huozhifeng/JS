@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点赞效果</title>
+    <style>
+        .handsome {
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            margin: 200px auto;
+            border: 2px solid blue;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div class="handsome">觉得我很帅的点赞 <span style="color: red">0</span></div>
+<script>
+    var handsome = document.querySelectorAll('.handsome')[0];
+    var span = handsome.getElementsByTagName('span')[0];
+
+    // 1, 不安全 （全局作用域）
+   /*var count = 0;
+   handsome.onclick = function () {
+        count++;
+        span.innerHTML = count;            //  span.innerHTML = ++count;两行合并
+    }*/
+
+
+    //2,把count换成私有作用域内的变量
+   /*
+    ~function(){
+        var count = 0;
+        handsome.onclick = function () {
+            count++;
+            span.innerHTML = count;
+        }
+    }()*/
+
+    //2,return 方法  同前面的那个 形成私有作用域  弊端占内存
+    /*  handsome.onclick=(function () {
+     var count=0;
+     return function(){
+     count++;
+     span.innerHTML = count;
+     }
+     })()*/
+
+    //3,利用innerHTML处理  ：每一次点击都先到页面获取最新的值，然后累加，，然后把累加值重新放回去。弊端：每次要转化字符串然后累加，在重新添加回去，浏览器都要重新渲染一下。
+    handsome.onclick = function () {
+       span.innerHTML++;  //span.innerHTML=span.HTML+1;  这个执行后为字符串 所以用++
+    };
+
+
+    //4,自定义属性（推介）
+    /*handsome.count=0;
+    handsome.onclick = function () {
+        span.innerHTML = ++this.count;
+    }*/
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

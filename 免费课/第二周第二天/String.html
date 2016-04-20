@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>String</title>
+</head>
+<body>
+    <!--
+        String
+
+    -->
+    <script>
+        /*
+        *   length 属性是字符串的长度,也可以通过索引值获取到具体的某一个字符
+        *       获取
+        *       charAt  通过指定的索引值获取字符 ，参数是索引值,返回值就是获取到的字符
+        *       charCodeAt 通过索引值获取指定字符的ASCII码值
+        *
+        *       截取字符串
+        *       substr(n,m)  从索引n开始截取m个,如果只有一个参数默认截取到末尾,对应和数组的splice去记忆
+        *       substring(n,m) 从索引n开始到索引m不包含m，如果只有一个参数默认截取到末尾
+        *       slice跟substring是一样的，不同点：slice支持负数索引,默认给你每一个负数索引值都加上了字符串的长度
+        *
+        *       toUpperCase  转变成大写
+        *       toLowerCase  转换成小写
+        *
+        *       indexOf 字符出现在字符串中的索引位置，如果有返回对应索引，没有返回-1
+        *       lastIndexOf  同indexOf，最后一次出现的位置的索引
+        *       window.navigator.userAgent 判断当前浏览器
+        *
+        *       split 把字符串转换为数组，把字符串按照指定的分隔符拆分成数组
+        *
+        *       replace(被替换，用谁替换)  替换字符串
+        *
+        *       match --正则时候讲
+        *
+        *
+        * */
+       // var str = 'welcome';
+        //console.log(str[3]);
+     //console.log(typeof(str.charAt(90)));
+      // console.log(str.charCodeAt(2));
+       // var res = str.substr(0,1);
+      //  console.log(res);
+       // var res = str.substring(0);
+     //   console.log(res);
+       // var res = str.slice(3,6);
+      //  console.log(res);
+       // var res = str.indexOf('c');
+       // console.log(res);
+       /* var result = str.lastIndexOf('come');
+        console.log(result);
+        console.log(window.navigator.userAgent); *///Chrome
+
+        var str = 'welcome';
+        var res = str.split();
+        console.log(res);
+        var str = 'welcome';
+        var res = str.replace(/e/g,'haha');  //全文修饰符
+        console.log(res);
+
+
+
+    </script>
+</body>
+</html>

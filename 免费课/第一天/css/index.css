@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;}
+ul{list-style: none;width:500px;height:400px;margin: 50px auto;  border: 1px solid yellow;  border-radius:5px;
+    overflow: hidden;}
+li{
+    height: 30px;
+    line-height: 30px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*
+ul li:nth-child(odd){
+     background:red ;
+ }
+ul li:nth-child(even){
+    background:orange ;
+}
+ul li:hover{
+    background:blue ;
+}*/

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+
+    //var a = 45;
+    var person = { //对象类型
+        name : 'tianxi',
+        'age' : 30,
+        height : {},
+        weight : '90kg'
+
+    };
+    console.log('name',person.name);
+  /*  person.age = 40;
+    person['weight'] = '90kg';
+    var vvv= 'ttt';
+    person[vvv] = 'rose'; //中括号内是字符串
+    person.vvv = 'rose'
+    var bog = 5555;
+    person[bog] = 'rose'; //中括号内是字符串
+    person.bog = 'rose';//数字的属性只能通过中括号的方式*/
+
+    for(var attr in person ){
+        console.log(attr,person[attr]);
+    }
+
+</script>

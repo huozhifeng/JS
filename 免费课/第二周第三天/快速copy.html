@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var a=[1,2,3,5,7,3,4,9,7,6];
+   // var a = [6,4,3,5,1,2,7];
+    //快速排序：找到数组的中间项目当作基准点，然后拿出来分别和其他项比较，把小于基准点的放到左边的left数组里，把大于基准点的放到右面的right数组里,然后继续分别把左边的数组left和右面的数组right继续执行此操作，一直到拆分开的数组长度到小于等于1为止。==》可以联想到我们的递归求和函数思想，在return的时候继续调用自己,到最后别忘记把若干个小数组拼接
+    function quickSort(ary){
+        if(ary.length <=1){ //递归函数停止的条件
+            return ary;
+        }
+        var pointIndex = Math.floor(ary.length/2); //获取数组基准点中间项的索引
+        var pointValue = ary.splice(pointIndex,1)[0]; //即使只有一项也是一个数组
+        var left = [],right = []; //两个空数组用来保存和基准点比较的
+        for(var i=0; i<ary.length; i++){
+            //var cur = ary[i]; //因为这个当前项要用超过2次，所以定义了一个变量
+            ary[i] < pointValue ? left.push(ary[i]) : right.push(ary[i]);
+        }
+        return quickSort(left).concat([pointValue],quickSort(right));
+    } //把拆分排序好的数组拼接在一起
+    console.log(quickSort(a));
+
+</script>

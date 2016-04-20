@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <!--  定时器  在单位时间内执行匿名函数，定时器不阻碍代码运行
+          window.setTimeout(function(){},1000)    参数1： 匿名函数，在相同时间间隔执行
+                                                  参数2： 时间间隔  ms
+           window.setInterval是不断执行匿名函数
+
+            window.clearInterval 清除定时器
+            window.clearTimeout-->
+ <script>
+     var count =0;
+     var time1=  window.setTimeout(function (){
+         alert("定时器")
+
+     } ,3000);
+
+    var time2= window.setInterval(function(){
+        count == 5 && window.clearInterval(time2);
+        console.log(count);
+        count++;
+    },2000);
+ </script>
+</body>
+</html>

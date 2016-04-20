@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+<body>
+    <!--
+        function 功能，方法，函数，声明一个函数用关键字function
+            function yuehui函数名(){  //函数名字可以理解为是一个变量，它也是一个引用地址(内存空间的地址),这个空间中存放的是函数体内的代码字符串
+                //函数体
+
+            }
+            函数的执行用函数名字加小括号;
+            函数分实名函数和匿名函数
+
+
+
+
+
+    -->
+</body>
+</html>
+<script>
+    /*function yuehui(){
+        alert();
+
+    }*/
+    //yuehui();
+
+
+    //var sum = function (){}; //
+
+    //求和函数
+    function sum(){
+        console.log(1+3);
+    }
+    //sum();
+    //我们怎么可能每次都求1+3呢??,那我们求哪两个数的和我们是不是不确定呀？为我们需要在函数体内放变量了，这个变量就是参数
+    function sum(num1,num2){ //函数的参数,在函数定义的时候我们的参数是形参，函数在执行的时候给参数赋值，此时参数才有意义，这会才是实参。
+
+        console.log(num1+num2);
+
+    }
+    //sum(1,5);
+    //但是现在也只能求任意两个数而已。。。。。
+    //sum(1); //如果你漏传了参数，那么这个参数在函数体内就是undefined
+    function sum(num1,num2){
+        var total = null; //对于不确定的结果但是我们需要提前用，我们可以暂时赋值一个null;
+        //如果num2没传那么num2是undefined，如果你传了我才加呢
+
+        if(num1 != undefined){  //num1 没传
+            total += num1;
+        }
+        if(num2 != undefined){
+            total += num2;
+        }
+       /* if(typeof num2 != 'undefined'){
+            total += num2;
+        }*/
+
+        /*
+        *  我们在工作中经常用这样的判断,if(outer){  }
+        * */
+
+        console.log(total,typeof total);
+
+    }
+    //sum(3,'9'); //数字和字符串相加是拼接字符串
+
+    //console.log(document.getElementById('adfasdfasdf')); //????
+    //规避非有效数字问题
+    function sum(num1,num2){ //sum(3)
+        var total = null;
+        if(num1 != undefined){
+            //你传了，但是要传符合需求的我才累加
+            if(!isNaN(num1)){ //'3','34'这样的纯数字字符串我们就加，其他的我们就不加了
+                total += Number(num1);
+            }
+        }
+        if(num2 != undefined){
+            if(!isNaN(num2)){
+                total += Number(num2);
+            }
+        }
+        console.log(total);
+        //我们就可以求任意两个数的和了
+
+    }
+    //sum(3,'9px'); //12
+
+    //我想求多个数的和呢？？
+    function sum(){ //求多个数的和，参数的个数已经没法固定了。。。。？
+        //console.log(arguments);  //当函数定义完成之后就已经产生了，不需要人为定义。这里面是一个参数的集合,并且是实参,它还有一个length属性，属性值是实参的个数
+        var total = null;
+        for(var i = 0; i< arguments.length; i++){
+            if(!isNaN(arguments[i]))
+            total += Number(arguments[i]);
+        }
+        //console.log(total);
+        return function (){};
+        //alert(123123123); //return 后面的代码就不再执行了
+    }
+    console.log(sum(2,'5'));//这个函数运行完就留下来一个undefined
+
+    //参数可以是一个对象
+    function aaa(param){ //这也是我们一种在工作中非常常见的传参方式
+        console.log(param.age);
+    }
+    aaa({name:'tianxi',age:89});
+
+    //自执行函数
+
+    /*(function (){
+        alert('我是自己执行的');
+    })();*/
+    // ~ + ！-
+
+    ~function (){
+        alert('我是自己执行的');
+        console.log(arguments);
+        //arguments.callee(); //就是函数本身，函数自己调用自己叫递归
+    }();
+
+
+</script>

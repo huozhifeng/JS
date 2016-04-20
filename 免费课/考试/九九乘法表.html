@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;font-size: 18px;}
+        ul,li{list-style: none;}
+        #tab{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            height: 360px;
+            padding: 10px;
+            margin-left: -450px;
+            margin-top: -180px;
+            border:2px solid brown;
+        }
+        #tab ul li{
+            height: 40px;
+            line-height: 40px;
+        }
+        #tab ul li span{
+            display: inline-block;
+            height: 40px;
+            width: 100px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .c1{
+            background: red;
+        }
+        .c2{
+            background: yellow;
+        }
+        .c3{
+            background: blue;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div id="tab"></div>
+
+<script>
+    var oTab=document.getElementById('tab');
+    var str="";
+    str+="<ul>";
+      for(var i=1;i<=9;i++){
+          var val="c1";
+          switch (i%3){
+              case 0:val='c1';
+                  break;
+              case 1:val='c2';
+                  break;
+              default:val='c3';
+          }
+          str+="<li class="+val+">";
+            for(var j=1;j<=i;j++){
+                str+="<span>  ";
+               //  str+=j+ " * " +i+ " = " +(j*i);
+                 str+=""+j+" * "+i+" = "+(j*i)+""
+                str+="</span>"
+            }
+
+          str+="</li>"
+      }
+
+    str+="</ul>"
+    oTab.innerHTML=str;
+   /* var oSpans=oTab.getElementsByTagName('span');
+    for(var i=0;i<oSpans.length;i++){
+        oSpans[i].className='c'+(i%3+1);
+    }*/
+
+ </script>
+
+
+
+
+</body>
+</html>

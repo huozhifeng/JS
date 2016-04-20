@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /* sort :函数的参数是function
+
+       JSON: 给每个属性名字加一个双引号，这个叫JSON格式的对象，只能用双引号
+         常用方法：
+              var jsonObj = {"name":'tx',"age":29}
+              JSON.stringify()把json格式的对象转化为字符串
+              JSON.parse()  把json格式的字符串转化为json格式的对象，低版本ie不兼容。
+              A.localeCompare(B)    A与B比较
+
+
+     */
+ /*   var a = [1,23,32,2,4,7];
+    a.sort(function(a,b){
+        return a-b
+    })
+    console.log(a)
+
+
+
+    var ary = [
+        {name:'tx',age:29},
+        {name:'nx',age:31},
+        {name:'lx',age:32},
+    ];
+    ary.sort(function(a,b){
+        return a.name.localeCompare(b.name)
+    })
+    console.log(ary)*/
+
+
+    //json 常用方法
+    var obj =  {name:'tx',age:29}
+    var jsonObj = {"name":'tx',"age":29}
+    JSON.stringify(jsonObj )             //    ==>  "{"name":'tx',"age":29}"
+
+</script>
+</body>
+</html>

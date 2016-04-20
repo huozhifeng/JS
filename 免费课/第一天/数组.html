@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数组Array</title>
+</head>
+<body>
+<script>
+    /*
+    *   数组,数组中的每一个项目用逗号隔开,数组是一个特殊的对象 索引 length
+    *       length--相当于删除数组最后一项,对于不存在的索引项目返回值是undefined
+    * */
+    var ary = [6,false,67,null,'tian'];
+    //console.dir(ary);
+    //数组的最后一项是ary[length-1];
+    //ary[0]
+    //ary.length--;
+    //console.log(ary);
+    //console.log(ary[8]);
+    //ary[10] = 11; //
+    //console.dir(ary);
+    /*
+    * 数组的常用方法
+    *    通过四个维度去记忆  1 方法的作用 2 方法的参数 3 方法的返回值 4 是否改变原有数组
+    *    第一部分  增 删 改 查
+    *
+    *       push 1向数组的末尾添加一项 2需要添加的项,如果是多项用逗号隔开 3 返回添加后的数组长度  4 原有数组改变
+    *       pop 1 删除数组最后一项  2    3 删除项   4 原有数组改变
+    *
+    *       unshift 向数组开头添加一项 2 需要添加的项 3 数组长度  4原有数组改变
+    *
+    *       shift  删除数组第一项 2   3删除项目   4原有数组改变
+    *
+    *       splice(n,m,x)  1从索引n开始删除m个  2 n是索引，m个数 3 删除项 4 改变  一个参数的时候从索引开始删除到末尾  两个参数从索引n开始删除m个  三个参数 从索引n开始删除m个，并且把第三个参数当作数组项放到删除位置
+    *
+    *       slice(n,m)  1从索引n开始找到索引m，不包含m  2 n从索引n开始  m到索引m但是这个m不包含 3 查询的数组项目  4 原有数组不变
+    *
+    *       第二部分  拼接
+    *           concat 1 拼接数组   2 要被拼接的数组  3 拼接后的数组   4  不变 ps如果拼接空数组或者没有参数相当于克隆数组
+    *           toString
+    *           join 1 把数组里的每一项当作通过制定字符拼接成字符串 2 分隔符
+    *           3 拼接好的字符串 4 不变
+    *           eval() 把字符串当作js表达式去执行
+    *       第三部分  排序
+    *           reverse() 1倒序数组  2  3 倒叙后的数组    4 改变
+    *           sort() 1按照一定的规则排序  2 参数一定是那个规则,函数 3 排序好的数组    4 改变
+    *           //冒泡排序
+    *       不兼容的：
+        *        indexof lastIndexof
+        *        forEach  循环遍历每一项，参数是一个匿名函数，形参分别是item和index，每一项和索引
+        *
+        *        map  和forEach基本相同，区别：它可以改变数组
+    *
+    *
+    *
+    *
+    * */
+    //var res = ary.push(8,9)
+    //console.log(res);
+    //ary.pop();
+    //var res = ary.pop();
+    //console.log(ary);
+    //console.log(res);
+    //var ary = [6,false,67,null,'tian'];
+    //console.log(ary.unshift('hello'));
+    //console.log(ary.shift());
+    //ary.splice(2,1,'xxx');
+    //console.log(ary);
+    //var ary = [10,11,12,13,14]
+    //ary.splice(0);
+    //
+    //var res = ary.slice(0);
+    //console.log(res);
+    //var ary = [10,11,12,13,14];
+    //var ary1 = ['a','b','c'];
+    //var res = ary.concat();
+    //console.log(res);
+    //var res = ary.join('+'); //string
+    //console.log(ary);
+    //ary.reverse();
+    //console.log(ary)
+
+    /*var ary = [10,312,'abc',12];
+    ary.sort(); //只能玩10以内的
+    var res = ary.sort(function (a,b){
+       //console.log(a,b);
+        return a-b;
+    });
+    console.log(res);
+    console.dir(Array.prototype);*/
+    var ary = [10,312,'abc',12];
+   /* ary.forEach(function (item,index){
+
+    })*/
+    var a=ary.join();             // 返回   "10,312,abc,12"
+    var b=ary.join('');           // 返回   "10312abc12"
+    var c=ary.join('+');          //返回   "10+312+abc+12"
+    var d=ary.join(' ');          //返回   "10 312 abc 12"
+    var e=ary.join(',')           //返回   "10,312,abc,12"
+
+    console.log(e);
+    /*var a=ary.map(function (item,index){
+       return item.toString();
+    });
+    console.log(a);*/
+
+</script>
+</body>
+</html>

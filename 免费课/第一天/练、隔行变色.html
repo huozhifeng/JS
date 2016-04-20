@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style>
+        body,div,ul,li{
+            margin: 0;
+            padding: 0;list-style: none;
+        }
+        .outer{width: 600px;padding:10px;border: 1px solid #cccccc;margin: 50px auto;border-radius: 1em;}
+        .outer li{height: 30px;line-height: 30px;text-align: center;font-size: 20px;font-weight:bold;color: #ffffff;cursor: pointer;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
+        .c1{background: red;}
+        .c2{background: blue;}
+        .c3{background: green}
+        .hover{background: #010101}
+
+    </style>
+</head>
+<body>
+
+<div id="outer" class="outer">
+<ul>
+    <li class="c1">111111111111111111111111111111111111111111111111111111111111111111111111111</li>
+    <li class="c2">333333333333333333</li>
+    <li>222222222222222222</li>
+    <li>asklasdjaksdlsaweq</li>
+    <li>555555555555555555</li>
+    <li>666666666666666666</li>
+    <li>777777777777777777</li>
+    <li>888888888888888888</li>
+    <li>999999999999999999</li>
+</ul>
+</div>
+</body>
+</html>
+<script>
+//   步骤：
+              //1 找到所有的li并且放到一个容器，赋值给一个变量
+              //2 分别给每一个li加上不同的样式，并且奇数行和偶数行不能相同，用循环添加 for
+//获取li的父级
+var quter = document.getElementById('outer');
+    //console.log(quter);
+    //console.log(typeof outer);
+    var lis=quter.getElementsByTagName('li');
+   console.dir(lis);
+    for(var i=0;i<lis.length;i++){
+        //lis[i].className ='c1';
+        if(i%3==0){ lis[i].className ='c2';}
+        else if(i%3==1){lis[i].className ='c1';}
+        else if(i%3==2){lis[i].className='c3'}
+        lis[i].selfClassName = lis[i].className;
+        lis[i].onmouseover = function(){
+            this.className = 'hover';
+        }
+        lis[i].onmouseout = function(){
+            this.className = this.selfClassName;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+

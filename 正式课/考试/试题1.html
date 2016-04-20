@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+一、免费课基础知识练习 （20分）
+1、一维数组中都是数字，想实现数字的从大到小排序：______
+ary.sort(function(a,b){return b-a;});
+2、删除数组中的最后一项内容，请至少写出三种办法：______
+ary.pop(); ary.splice(ary.length-1,1);ary.length--;
+3、找出数组中的第n项到第m项的内容：_______
+ary.slice(n,m+1);//slice(n,m) 查询 从索引n开始，到索引m(不包含m) 返回值是查询的数组项目 原有数组不变
+4、获取当前浏览器可视区域的宽度(兼容所有的浏览器)：______
+document.documentElement.clientWidth || window.innerWidth
+详解：http://www.jb51.net/article/32679.html
+5、把元素添加到指定的容器中，至少写出两种办法：______
+document.createElement();
+insertBefore(a,b); //父级调用，a你要把谁插入 b插入谁前面
+6、获取上一个哥哥元素节点(兼容浏览器):_previousSibling();__
+7、获取[n-m]之间的随机整数：______
+Math.round(Math.random()*(n-m)+m);
+8、把字符串中的某一个字符进行替换：___replace(a,b);___
+9、
+<div id=’tab’class=’tabCon’></div>
+:用js获取着这一个元素对象，至少写出三种方式(不需要兼容所有的浏览器)：______
+document.getElementById(“tab”)；
+document.getElementByTagName(“div”);
+document.getElementById(“tab”).getElementByClassName(“tabCon”);
+document.querySelect(“.tabCon”);
+10、[]==false：__ture___ ![]==false：__true___
+二、根据每一道题的代码写出正确的输出结果 (60分)
+
+undefined //预解释了，声明了并未赋值 预解释不在乎条件
+undefined // 执行了，条件不成立，没有赋值，但预解释过了，声明过了，所以~~
+
+珠峰 5000
+undefined 5000
+
+解析：var name = '中国';
+var age = 5000;
+name = (function(name,age){ // name 变量 覆盖掉 上面的了！注意这个右侧是个自执行函数，却没有返回值，那么这个 输出这个name 就是undefined
+arguments[0]='珠峰'; // 函数中内置的arguments ，改变索引为0的项
+age =age || this.age; // 这个this==>>window
+console.log(name,age); // 珠峰 5000
+})(name); //把name="中国" 的值当实参传入自执行函数中
+console.log(name,age); //undefined 5000
+
+
+alert 弹出的时候只是数字： 300 100
+consol.log 返回值是数组
+[300]
+[100]
+解析：
+var ary=[100,200]; //引用数据类型 开辟新的内存地址空间
+~function(ary){ //函数声明var的一个名字叫ary变量
+ary.length--; // 接收实参传进来的引用地址 并做更改 数组长度减1 就是删除数组最后一项 就把 000xxxfff 引用地址中的就是[100,200]删除最后一项变成[100] 更改了这个地址000xxxfff 中的内容
+ary=[]; //声明了一个新的数组 内存地址为fffxxx111，私有作用域中声明的私有变量
+ary[ary.length]=300;//地址fffxxx111 中做更改，数组为空ary.length=0,ary[0]=300 就是 地址fffxxx111 中内容变成 [300]
+alert(ary); //打印这个 地址fffxxx111 中内容变成 [300]
+}(ary); //把 ary这个引用地址 000xxxfff 当做实参传入自执行函数中
+alert(ary);//全局下的 ary =[100]
+
+
+答案分别是：
+解析：注意++i 是先相加 后运算 内存是否被释放 不释放的时候就用原来的值
+f = fn(2) 的内存是释放的！ 除非 （再 var f =null） 再给f 赋值才会释放掉
+/f(3) 之后的每一次i的值都是增加的
+/f(3) 3*(++2) = 9 这时候i=3
+/f(4) 4*(++3)= 16
+/f(5)(6) 6*(++5) =36 这个每一次执行 都是 开辟一个新的内存空间
+/f(7)(8) 8*(++7)= 64 这个每一次执行 都是 开辟一个新的内存空间
+
+
+答案：
+解析：
+
+
+答案：
+解析：
+
+
+三：问答题 （20分）
+有如下的HTML结构，需求是想要实现点击每一个按钮，让body的背景颜色显示不同的，请问下面代码是否可以实现？如果能是为什么？如果不能是为什么？并写出你的解决方案(至少两种不同思路的解决办法)？
+
+用自定义属性的方式 把i 的值存起来
+用闭包的方式
+
+
+以上的相关代码！
+
+<script>
+    console.log(num);
+    if (!("num" in window)) {
+        var num = 100;
+    }
+    console.log(num);
+
+    var name = '中国';
+    var age = 5000;
+    name = (function (name, age) {  // name 变量 覆盖掉 上面的了！注意这个右侧是个自执行函数，却没有返回值，那么这个 输出这个name 就是undefined
+        arguments[0] = '珠峰';  // 函数中内置的arguments ，改变索引为0的项
+        age = age || this.age; // 这个this==>>window
+        console.log(name, age); // 珠峰 5000
+    })(name); //把name="中国" 的值当实参传入自执行函数中
+    console.log(name, age);  //undefined  5000
+
+
+    var ary = [100, 200]; //引用数据类型 开辟新的内存地址空间
+    ~function (ary) { //函数声明var的一个名字叫ary变量
+        ary.length--; // 接收实参传进来的引用地址 并做更改 数组长度减1 就是删除数组最后一项  就把 000xxxfff 引用地址中的就是[100,200]删除最后一项变成[100] 更改了这个地址000xxxfff 中的内容
+        ary = []; //声明了一个新的数组 内存地址为fffxxx111，私有作用域中声明的私有变量
+        ary[ary.length] = 300;//地址fffxxx111 中做更改，数组为空ary.length=0,ary[0]=300 就是 地址fffxxx111 中内容变成 [300]
+        alert(ary);  //打印这个 地址fffxxx111 中内容变成 [300]
+    }(ary);  //把 ary这个引用地址 000xxxfff 当做实参传入自执行函数中
+    alert(ary);//全局下的 ary =[100]
+
+    console.log('-------------------------------------');
+    function fn(i) {
+        return function (n) {
+            console.log(n * (++i));
+        }
+    }
+    var f = fn(2);
+    f(3);
+    f(4);
+    fn(5)(6);
+    fn(7)(8);
+    /*
+     *注意++i 是先相加 后运算     内存是否被释放 不释放的时候就用原来的值
+     f = fn(2) 的内存是释放的！ 除非 （再 var f =null） 再给f 赋值才会释放掉
+     /f(3) 之后的每一次i的值都是增加的
+     /f(3)  3*(++2) = 9   这时候i=3
+     /f(4)  4*(++3)= 16
+     /f(5)(6)   6*(++5) =36   这个每一次执行 都是 开辟一个新的内存空间
+     /f(7)(8)   8*(++7)= 64   这个每一次执行 都是 开辟一个新的内存空间
+     * */
+
+    console.log('------------------------------------');
+    var num = 1;
+    var obj = {num: 2};
+    obj.fn = (function (num) {
+        this.num = num * 2;
+        num++;
+        return function (n) {
+            this.num += n;
+            num++;
+            console.log(num);
+        }
+    })(obj.num);
+    var fn = obj.fn;
+    fn(10);
+    obj.fn(20);
+    console.log(num, obj.num);
+    //4  5 4 22
+
+    console.log('-------------------------------------');
+    function Fn(num) {
+        this.x = this.y = num;
+    }
+    Fn.prototype = {
+        x: 20,
+        sum: function () {
+            console.log(this.x + this.y);
+        }
+    };
+    var f = new Fn(10);
+    console.log(f.sum === Fn.prototype.sum);
+    f.sum();
+    Fn.prototype.sum();
+    console.log(f.constructor);
+
+
+</script>
+
+
+</body>
+</html>

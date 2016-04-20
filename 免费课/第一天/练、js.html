@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css"  >
+    </style>
+</head>
+<body>
+
+
+js:引入方式
+1 行内  onclick="alert(123)" 不安全
+2 内嵌  script标签里 为什么放在底部
+3 外链  script的src属性 在script包含这个src属性后，标签内的代码是不会被执行的。
+js组成
+1 BOM  browser object model  浏览器对象模型
+2 DOM  document object model 文档对象模型
+3 ECMAScript  5 ES6 js的核心部分
+    1 变量  存储值和代表值，也可理解为容器（储存我们需要的任何数据）
+            声明一个变量用关键字var
+    2 数据类型  【】【】【】【】【】
+         a基本数据类型
+                1 number数字
+                     正数 负数 0 小数（浮点数） NaN(not a number)
+                        内置方法【小括号里是字符串或数字 】
+                            parseFloat()返回值：取浮点数。同parseInt
+                            parseInt()返回值：取整。从左到右 遇到非有效数字就停止 返回正数部分；第一次就遇到非有效数字 返回NaN  【作用就是把一个字符串前面的数字提取出来】
+                            isNaN() 返回值：true 和false
+                            Number()返回值：把其他数据类型强制转化为数字类型  【作用 强制把一个字符串转化为数字】
+                           【 Number('12px')  返回 NaN ;】 【Number([])返回 0 ；Number('')返回 0 ；Number(true)返回1 Number(null) 返回0  Number(undefined) 返回NaN】
+
+                     <!--调试工具f12
+                           console.log()这里直接可以写我们的js代码 回车执行
+                           console.dir比console.log更详细信息
+                           network 加载网页的请求-->
+                2 String 字符串数据类型   用单引号或双引号包起来
+                         【"'内容'"   '"内容"'   "\"内容\""】
+                3 BooLean 布尔数据类型   true 和 false  【小括号里是字符串或数字或其它数据类型 不能字母】
+                          BooLean（）;强制转换为布尔类型
+                                     自身做布尔运算 除了以下5个为假 其他都为真
+                                  【0,NaN,"",false,null,undefined   】    即BooLean(0);返回值 false
+                          一个‘！’是取反 ![]==false，也发生强制类型转换
+                          两个‘！’是自身做布尔运算 !![]==true
+                          一个'='是赋值
+                          两个‘=’是比较 先把等号两边转换为同一类型（强制的）  【类型相同 不用转换 看形势和内容】
+                                对象（数据类型）==对象
+                                        【[]==[]  false ；[]==![]  true】  【永远不相等】
+                                对象==字符串    把对象转换为字符串然后再比较 ,
+                                       【""==" "    false   "0"==""  false ;
+                                        [].toString()==''   true；
+                                        {}.toString()  返回 "[object Object]"】
+                                       【 null==undefined   null==null undefined==undefined  返回值true 。除了这两比 和其他比都不相等】【NaN==NaN  返回值 false】
+                                对象==数字      把对象转换为字符串在转换为数字。
+                                        []==0   true;
+                                        Number([].toString())==0
+                                 数字==布尔  把布尔转化为数字   false是0  true是1
+                                         0==false
+                                 数字==字符串    字符串转化数字
+                                 布尔==字符串    都转为数字比较
+                          三个‘=’是绝对比较 如果类型不一样 那么直接返回false
+                  null  null只有自己                 undefined  也只有自己-->
+         b引用数据类型
+                数组，对象，正则，函数，时间...
+                对象数据类型  【[]、  {} 、 //  都是实例     】
+               1 字面量方式创建 ： var person={name='zhufeng', age=18};  【 alert(person) 自带toString()的功能】
+               2 创建实例： var obj= new Object()
+                   【增、删、改、查】
+                    对象{属性名：属性值，...} ，由一组或多组属性名和属性值组成。属性名和属性值也叫键值对，key&value
+                    增加属性
+                       对象.属性名=属性值
+                    取值
+                       对象.属性名
+                    修改  原来有的属性重新赋值就是修改  没有则是增加
+                     删除属性
+                       delete 对象.属性名【真删除】
+                       【person.name=null【假删除】
+                       不存在的属性那么打印它的值是undefined
+
+                函数数据类型
+                    函数
+    3 语法操作语句
+    4 命名规范
+       1 不能以数字开头
+       2 可以字母，下划线，美元符开头
+       3 不能使用关键字和保留字
+       4 区分大小写
+       5 驼峰命名法 （匈牙利） studentsNameList  开头小写 后面每一个有意义的单词首字母大写
+js 中判断数据的常用方法
+    1 typeof   有且只有6个  【number,string,boolean,object,undefined,function】  返回值都是字符串类型 而且小写
+                例： console.log(typeof typeof typeof(5));  返回值"string"
+                     typeof (null) 返回值"object"
+                     typeof(true) 返回值"boolean"
+                     typeof(ABC) 返回值"undefined"
+    2 instanceof  判断当前实例是否属于这个类的
+    3 constructor  构造函数
+    4 Object.prototype.toString.call()
+
+判断语句
+      1 if else  条件是可以由多个条件组合的 。【 &&是并且条件  ||是或者条件】。如果只有一个条件 花括号可以不写。【在条件判断语句中，条件会强制转化为布尔类型】【只要前面有一个条件成立 后面的成立的也都不执行了】
+           if(条件1){
+           条件成立的时候执行的代码}else if(条件2){
+           条件2成立的时候执行的代码}else if(条件3){。。。}else{以上都不成立的时候执行的代码}
+          【if(num>=0){console.log('正数或零')} 相当于  num>=0?console.log('正数或零')：void 0；】【void 0】占茅坑不拉屎
+                                                  或者  num>=0 && console.log('正数或零')
+      2 switch case   【条件是绝对比较 值为===a,===b】
+            switch(条件){
+            case a：
+                   代码1； 成立的时候执行的代码
+                   break；
+            case b：
+                    代码2； 成立的时候执行的代码
+                   break；
+                   default：
+                     代码3； 以上都不成立执行
+            }
+      3 三元运算符
+           条件 ？ 条件成立执行 ：条件不成立执行；
+      4 单独的if判断也可以这样写
+           条件 && 条件成立执行
+           5 && alert（haha）;
+ js中的循环语句
+           1 for  一般应用于我们知道开始和结束的循环条件   （debugger 调试工具  f11下一行  f8结束调试）
+                 for(var i=0; i<10;i++){ }
+                 i=0循环的初始值 第一步设置循环的初始条件，i<10循环执行的条件 第二步 初始条件和循环条件作对比 ，{}里面是循环体 第三步执行代码，第四步：累加循环步长后在和循环条件做对比
+                 i++ /  i+=1  / i=i+1
+                 i++和++i的区别，++i是先累加后运算，i++是先运算后累加
+                 continue;  继续，当我们在循环体内执行代码遇到了continue，当次循环停止，下次循环继续，continue后面的代码不再执行
+
+                 break;  代码执行到break 循环停止，i++也不再执行
+           2 while 条件循环  只要符合条件我就循环
+                  while（循环的条件）{
+                  循环体}
+            【【 do{执行的内容}while();  不管条件是否成立，都要先执行一次】】
+           3 for in  是用来遍历对象的  循环的次数跟对象有多少组键值对。【【顺序：循环先执行属性名是数字的  然后从上到下执行】】
+                for(var attr in obj){}
+                var obj{name:"abc",age:12,1:10086}
+                for(var key in obj){console.log(obj[key]);}  【【这里不能用. 因为key可能是数字】】
+
+js 函数     function   功能 方法 函数，一个函数用关键字function    arguments 与生俱来  函数天生就有
+
+           function yuehui函数名(){
+            //函数体
+            //【【函数名字可以理解为一个变量，它也是一个引用地址 ，在空间中存放的是函数体内的代码字符串}】】
+             1 函数申明是 把{}里的内容以字符串形式存在我们的内存地址里
+             2 当我们执行计划的时候吧内存里的字符串拿出来当做js代码来执行
+             3 执行的时候形成了私有空间，私用作用域
+             4 外面的代码无法访问，不受外界干扰
+            ==>  函数执行时形成的私有作用域，把这个机制叫做【闭包】（私有化）
+             return  返回的是值 不是变量 后面的代码不执行
+            yuehui函数名()  函数的执行用函数的名字加小括号;
+            函数分为：实名函数 和 匿名函数
+             //z自执行函数  // ~ + ! -
+             (function (){
+             alert('我是自执行的');})();
+             ~function(){
+             alert();}();
+
+<!--js 数组  数组中的每一个项目用逗号隔开，数组是一个特殊的对象 索引length
+          length&#45;&#45;相当于删除数组最后  一项  对于不存在的索引项返回值是undefined
+         【常用内置方法】
+              通过四个维度去记忆 1 方法的作用 2 方法的参数 3 方法的返回值 4 是否改变原有数组
+             第一部分  增 删 改 查
+               push  1向数组的末尾添加一项 2需要添加的项,若果多项用逗号隔开 3返回改变后数组长度   4原有数组改变
+               pop   1删除数组最后一项    2不需参数                         3返回删除的项         4 原有数组改变
+               unshift 1 向数组开头添加一项 2 添加的项                     3返回改变后数组长度   4原有数组改变
+               shift  1删除数组第一项        2 不需参数                    3返回删除的项         4 改变
+               splice（n,m,x）1从索引n开始删除m个2 n是索引 m 是个数 x是添加的项 3 删除的项       4改变
+               【一个参数时 从索引开始删除到末尾  两个参数从索引n开始删除m个 三个参数 从n开始删除m个 并且把第三个参数当做数组项放到删除位置   【splice(0) 和splice()  不一样】  】
+               slice(n,m)1 从索引n开始找到索引m不包含m 2 n,m索引             3返回找到的数组       4不改变
+            第二部分  拼接
+               concat 1 拼接数组  2要被拼接的数组                           3 拼接后数组           4 不改变
+                       如果拼接空数组或者没有参数相当于克隆
+               join 1 把数组里的每一项当做通过制定字符拼接成字符串  2分隔符 3拼接好的字符串        4不改变
+                       eval（）把字符串当做js表达式取执行
+            第三部分  排序
+                reverse（） 1倒序数组     2                                    3倒序后的数组       4 改变
+                sort()冒泡 1按照一定规则排序 2参数一定是那个规则 ,函数（无参数是10以内的玩）  3 排序好的数组  4 改变
+                   sort(function(a,b){return a-b}) a-b升序  b-a降序
+               不兼容的：
+                     indexof  lastIndexof
+                     forEach() 1循环遍历每一项 2 参数是函数item,index.(funtion(item,index){console.log(item,index)})
+                     map  和forEach 基本相同 区别：可以改变数组
+          -->
+<!--DOM   DON 中获取元素的常用方法
+              1 document.getElementById('id')通过id获取元素
+                 ps：在低版本ie中 我们的id区分大小写   在表单元素中的name 会当做id使用
+              2 document.getElementsByTagName('tagName') 通过标签名获取一组元素 获取具体的需要通过索引值
+              3 document.getElementsByClassName('className') 通过类名获取一组元素   低版本不兼容
+              4 document.getElementsByName()   通过name 属性获取  低版本不兼容
+              5 document.documentElement   HTML
+              6 document.body             body
+              7 document.querySelector()  移动端
+              8 document.querySelectorAll() 移动端
+                ps:获取网页的宽度和高度 document.documentElement.clientWidth
+                                        document.documentElement.clientHeight
+             节点类型
+                   nodeType  nodeName      nodeValue
+             元素     1    大写的标签名      null
+
+             文本     3       #text        文本内容
+
+             注释     8       #comment     注释内容
+
+          document    9       #document     null
+
+             dom中节点关系属性
+                 childNodes 所有的孩子节点，包含换行，空格，注释等
+                 children  所有元素节点
+                 firstChild   第一个
+                 firstElementChild
+                 lastChild    最后一个
+                 lastElementChild
+                 parentNode  父亲节点
+                 previousSibling previousElementSibling
+                 nextSibling nextElementSibling
+             dom节点的增 删 改 查
+                  增加
+                    document.creatElement('span')
+                    appendChild 父级元素调用，参数死要添加的元素，添加到父元素的末尾
+                    insertBefore(a,b) a你要把谁插入  b插入谁前面
+                    removeChild（）参数是要删除的元素
+                    replaceChild(a,b)  a替换b
+                    cloneNode()  克隆节点
+              dom节点属性
+                    setAttribute
+                    getAttribute
+                    removeAttribute
+ Math  数学方法
+     Math.abs();     //绝对值
+     Math.ceil();    //向上取整         Math.ceil(12.1)   返回13
+     Math.floor();   //向下取整               ~(12.1)     返回12    ~（-12.1）  返回-13
+     Math.round();   //四舍五入              ~（12.5）    返回12    ~（-12.5）  返回-12   （负数是5舍6入）
+     Math.max();     //取最大值
+     Math.min();     //取最小值
+     Math.random();  //获取从0到1的随机数    可取到0、1  [0~1]
+     Math.round(Math.random()*(m-n)+n);    //获取从n到m 的随机整数  [n~m]  包括n、m
+
+
+
+-->
+ <script>
+     ary=[1,2,3,4,5,6,7];
+     //ary.push(8,9)
+    // console.log(ary)              //返回 [1,2,3,4,5,6,7,8,9]
+    // console.log( ary.push(8,9))   //返回11/ 9
+    // ary=[1,2,3,4,5,6,7]
+    // console.log(ary.push(8,9))      //返回9
+
+//     ary.pop()
+//     console.log(ary)              // [1,2,3,4,5,6]
+//     console.log(ary.pop())       //返回6/ 7
+
+//     ary.unshift("hello")
+//     console.log(ary)                   //["hello",1,2,3,4,5,6,7]
+//     console.log(ary.unshift("hello"))   //返回9/ 8
+
+    //ary.shift()
+   //  console.log(ary)                   //[2,3,4,5,6,7]
+     //console.log(ary.shift())           //2/ 1
+
+  // ary.splice(2,4,'xxx')
+ //   console.log(ary)                   //[1,2,'xxx',7]
+ //  console.log(ary.splice(2,4,'xxx'))  //['xxx',7]/ [3,4,5,6]
+
+  //   ary.slice(2,5)
+  //   console.log(ary)                   //[1,2,3,4,5,6,7]  不变
+  //   console.log(ary.slice(2,5))        //[3,4,5]/ [3,4,5]
+
+     //var ary1=['a','b']
+     //ary.concat(ary1)
+     //console.log(ary)                     //[1,2,3,4,5,6,7]  不变
+    // console.log(ary.concat(ary1))       // [1,2,3,4,5,6,7,'a','b']/ [1,2,3,4,5,6,7,'a','b']
+
+    // ary.join('+');
+    // console.log(ary);                   //[1,2,3,4,5,6,7]   不变
+   //  console.log(ary.join('+'));         //"1+2+3+4+5+6+7"
+
+       // ary.reverse();
+     //console.log(ary);                     //[7,6,5,4,3,2,1]
+     //console.log(ary.reverse())              //[7,6,5,4,3,2,1]
+
+
+ </script>
+
+
+
+
+
+<script>
+    // console.log(typeof(asd))
+    /*var name="变量值";
+    console.log(name);*/
+</script>
+
+<script>
+   /* var i=2
+    do{
+        console.log(i);
+    }while(i!=2) ;*/
+
+     /*  (function (){
+       alert('我是自执行的');})();
+       ~function(){
+           alert(123113);
+           console.log(arguments);
+           //arguments.callee();   // 就是函数本身，
+       }();*/
+
+
+       function sum(){
+           //debugger;
+        //  console.log(arguments);//这个里面是参数的集合，并且是实参，还带有length属性，属性值是参数的个数
+        var total = null;
+           //debugger;
+        for(var i=0;i<arguments.length;i++){
+        if(!isNaN(arguments[i]))
+        total += Number(arguments[i]);
+        }
+      //console.log(total);
+       return total;
+        //alert(123123); //return 后面的代码不再执行
+       }
+        //sum(2,'5') ;
+  console.log(sum(2,'7','a'));
+   var n=sum();
+   console.log(sum(3,5));
+
+   /* function yuehui(){
+        alert();
+    }
+    yuehui();*/
+
+  // var sum = functon (){}; 函数表达式
+    //debugger;
+    /* sum ();
+      function sum(){
+
+      console.log(1+3);
+      }*/
+
+/*
+   function sum(num1,num2){//参数，在函数定义的时候是【形参】，在函数执行的时候给参数赋值，此时才有意义，为【实参】。
+       console.log(num1+num2);
+   }
+   //sum(1);他如果漏传了参数，漏传的参数为undefined   返回NaN
+  // sum('a');  //返回aundefined
+     sum(123,345);*/
+
+
+  /* function sum(num1,num2){
+       var total = null; //对于不确定的结果可以暂时赋值null
+       if(num1 != undefined){
+           total +=num1;
+       }
+       if(num2 != undefined){
+           total +=num2;
+       }
+      /!* if(num2){
+           total += num2;
+       }*!/
+       //console.log('a'+6);
+       console.log(total, typeof total)
+       return total;
+   }
+    sum('a',6); //数字+字符串 结果是拼接字符串  返回a6   nulla6 string   注：null+'a' 返回“nulla”
+      sum('a');    //返回 nulla string
+      sum();         //返回 null "object"
+    //sum(1);        //返回 1    "number"
+      sum(1,2,3)     //返回3    "number"
+    // console.log(sum(2,3));*/
+
+
+  /* function sum(num1,num2){
+       var total = null;
+       if(num1 != undefined){
+           if(!isNaN(num1)){
+               total +=Number(num1);}
+       }
+       if(num2 != undefined){
+           if(!isNaN(num1)){
+               total +=Number(num2);}
+       }
+       console.log(total);
+   }
+   sum(3,'9');*/
+
+   /*//alert(NaN==NaN);
+    var dav={
+        name:'tianxi',
+        age:30,
+        weight:'100kg',
+        1:10086}
+   for(var bb in dav){
+   //debugger;
+    console.log(bb,dav[bb]);
+    console.log(dav['name'])
+   }*/
+
+
+ /* for(var i=0;i<4;i++){
+    // console.log(i)
+  }
+     console.log(i)*/
+
+ /*  for(var i = 0; i<9; i++){
+       //debugger; //调试
+       if(i<=5){
+           i += 3;
+           continue;
+       }
+       console.log(i); //9
+       i+=5; //12
+       break;
+   }
+   console.log(i);*/
+
+  /* var j = 0;
+   while(j<5){
+       console.log(j);
+       j++;
+   }*/
+  /*  for (var i= 0;i<5;i++){
+        console.log(i)
+
+    }*/
+
+
+  /*  console.log(typeof typeof typeof(5));
+    console.log('number');
+    console.log(5);
+    console.log('5');*/
+
+  //alert( Boolean(0));
+</script>
+
+
+<script>
+   // var i=-1
+    /*if(i>0){
+        alert('haha');
+    }else if(i<0){
+        alert('0.0');
+    }*/
+    /*switch(i=2){
+        case 1:alert("haha");
+            break;
+        case 4:alert("true")
+            break;
+        default:alert("ok");
+    }*/
+    //5 && alert('haha');
+   // 0 ? alert(0) : alert(5);
+
+</script>
+
+
+</body>
+
+</html>
+
+

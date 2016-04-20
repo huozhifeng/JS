@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <!--
+        递归：函数执行的时候自己调用自己
+    -->
+    <script>
+      /*  function sum(n){
+            if(n ===0){
+                return 0;
+            }
+            if(n%3===0){
+                return sum(n-1);
+            }
+            return n + sum(n-1);
+        }
+        sum(100);
+       console.log(sum(100))*/
+
+        function cen(n){
+            if(n===1){
+                return 1;
+            }
+            if (n%2 !==0){
+                return cen(n-1);
+            }
+            return n*cen(n-1);
+        }
+      cen(10);
+        console.log(cen(10));
+
+    </script>
+</body>
+</html>

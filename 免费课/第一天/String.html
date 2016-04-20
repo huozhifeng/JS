@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+    String
+      length 属性使字符串的长度，也可以通过索引数值获取到某个字符
+        charAt  通过指定的索引值获取字符，参数是索引值,返回获取的字符
+        charCodeAt  通过索引值获取指定字符的ASCII码值
+        截取字符串
+        substr(n,m)         从索引n截取m个   如果只有一个参数 默认截取到末尾；没有参数是全部返回
+        substring（n,m）   从索引n开始到索引m不包含m
+        slice （）            和substring一样  不同点：slice 支持负数索引 从后面截取，默认给每一个字符串 (负数+length)
+        toUpperCase     转变成大写
+        toLowerCase     转变成小写
+        indexOf         字符出现在字符串中的索引位置，返回对应索引的值，如果没有对应索引 返回-1
+        lastIndexOf      字符最后一次出现时的索引值
+        window.navigator.userAgent    判断当前浏览器类型  Firefox  Chrome  Opera
+        split     把字符串转化为数组  把字符串按照指定的分隔符拆分成数组
+        replace(a,b)   替换字符串   a被b替换
+        match
+
+  -->
+<script>
+    var str='welcome to zhufeng';
+ //   console.log(str.charCodeAt(1))
+ //    console.log(str.substring(0,3))  ;
+ // var res=str.split("")                    //返回 ["w", "e", "l", "c", "o", "m", "e","",......]
+    var res=str.split();                     //返回  ["welcome to zhufeng"]
+    // var res=str.split('+');                   //返回    ["welcome to zhufeng"]
+    //var res=str.split(" ");                      //返回 ["welcome","to","zhufeng"]
+        console.log(res);
+   // str.replace('e','haha')
+   // var res= str.replace(/e/g,'haha')  //全文修饰符
+   // console.log(res)                       返回 “whahalcomhaha”
+
+</script>
+</body>
+</html>

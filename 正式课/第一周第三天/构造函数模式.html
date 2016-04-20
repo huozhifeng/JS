@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+     /* 类：具体的东西。
+     Object，Array，RegExp Date String Boolean
+      1，构造函数模式（类） 实例 ,【类名大写】。构造函数在new的时候回默认创建一个实例对象，并且会返回。
+     *2，在构造函数运算的时候，如果return一个基本数据类型，不会改变默认的返回值(实例)；
+     *3，如果return一个引用数据类型，默认返回实例对象就被改变成为return的返回的引用地址；
+     *4，区别：如果当做构造函数运行会默认返回一个实例，如果一个普通函数运行什么也没返回 new
+     *5,构造函数无法将公共的提取出来
+     *
+     *
+     *   细节： 1，this是当前实例
+     *          2， 我们的类也是函数  具备函数的属性 类具备函数的特点  。
+     *          3， typeof不能识别object里具体包括的
+     *              instanceof  用法（实例 instanceof 类） 返回值是true 和false
+     *          4，“num” in window    // in 判断对象里是否有属性  （公私不分）
+     *              hasOwnProperty   判断私有     格式： 对象.hasOwnProperty("属性名") 、、 对象：obj;
+     *                                                                                      对象中属性：attr;
+     *          5,   console.log(typeof typeof (typeof {}));     ==>"Object"
+     *               f instanceof Fn                             ==>  true
+     *               Object，Array，RegExp... instanceof Object/Function         ==> true
+     *               typeof(Date,String, Boolean,Number,Function)                ==> "function"
+     *               typeof(object,array,number,string...)                       ==>"undefined"
+     *               obj.hasOwnProperty(attr)
+     *
+     * 工厂模式 就是一个函数 -->通过类创建的都是object
+     *
+     * */
+   /* function Table(width) {
+        //构造函数中的this使我们的当前实例
+        this.width = width;
+        this.code = function () {
+            console.log('桌子也能coding')
+        }
+        //return 'haha';
+        //return {name:'allen'};
+
+    }
+    new Table();      //构造函数执行
+    var table1 = new Table;                //没有参数的时候小括号可以不写 Table（）
+    var table2 = new Table(100);
+    console.log(table2);                   //对象Table{width:100}       //Object {name: "allen"}
+    var table2 = new Table(200);
+    console.log(table2);                   //对象Table{width:200}      //Object {name: "allen"}*/
+
+
+    //构造函数中的私有变量跟实例没有关系  可以用hasOwnProperty来检测是否有这个私有属性
+    function Fn() {
+        var num = 10;                     //函数内部是私有的  ，不是当前实例的
+        this.x = 100;                      //this是window 添加了x属性值为100.
+        this.getX = function () {
+            console.log(this.x);
+        }
+    }
+    var f = new Fn();                       //f = {x:100,getX:function(){console.log(this.x)}}
+    console.log(f.num);                     //undefined  是属性不是变量 所以不报错
+   // var k = Fn();                           //100
+    console.log(f.getX());                  //100（40行）    undefined（46行） ==>执行完结果没有return
+    f.getX();                               //100(40行)           方法中的this是f
+    var ss = f.getX;
+    ss();                                   //undefined  方法中的this是window
+
+
+    //模拟函数       用私有属性(hasOwnProperty)模拟公有属性(自创hasPubProperty)
+      function hasPubProperty(obj,attr){
+      return (attr in obj) && (!obj.hasOwnProperty(attr));
+      }
+      console.log(hasPubProperty(f,'getX'))
+
+
+</script>
+</body>
+</html>

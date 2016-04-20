@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+    判断语句
+        1 if else 条件是可以由多个条件组合的，&&是并且条件  ||是或者条件,如果你只有一个条件，花括号可以不写,在条件判断语句中，条件会强制转化为布尔类型
+            if(条件1){
+                条件1成立的时候执行的代码
+            }else if(条件2){
+                条件2成立的时候执行的代码
+            }else if(条件3){
+                条件3成立的时候执行的代码
+            }else{
+                以上条件都不成立的时候执行的代码
+            }
+        2 switch case
+            switch (条件){  *是绝对比较
+                case 1:
+                    case 1 成立的时候执行的代码
+                    break;
+                case 2:
+                    case 2 成立的时候执行的代码
+                    break;
+                default:
+                    以上条件都不成立执行
+            }
+        3 三元运算符 是if else的高比格写法
+            条件  ? 条件成立执行  : 条件不成立执行
+
+        4 单独的if判断也可以这样写
+            条件 && 条件成立执行
+-->
+
+</body>
+</html>
+<script>
+    var num = 12;
+    if(num > 0 || num < 11){
+        console.log('正数');
+    }else if(num < 0){
+        console.log('负数');
+    }else{
+        console.log('other');
+    }
+
+   /* var a;
+    a = 5 || 6;
+    console.log(a);*/
+
+    var num = '10';
+    switch (num){
+        case 1:
+            alert(1);
+            break;
+        case 5:
+            alert(5);
+            break;
+        case 10:
+            alert(10);
+            break;
+        default :
+            //alert('haha');
+    }
+    /*if(5){
+    alert();//
+    }*/
+
+    //5 ? alert(5) : alert(0);
+    //6 && alert(6);
+
+    /*
+    *
+    *   JS中的循环语句
+    *       1 for  一般应用于我们知道开始和结束的循环条件
+    *           for( var i=0;循环的初始值，循环从哪里开始 i<10; 循环执行的条件 i++ 循环的步长){
+    *               //循环体
+    *               第一步：设置循环的初始条件
+    *               第二步：循环的初始条件和循环条件做对比
+    *               第三步，执行循环体内的代码
+    *               第四步：累加循环步长后再和循环条件做比较
+    *               console.log(i);
+    *               i++/ i+=1/ i=
+    *               **
+    *               continue; //继续,当我们在循环体内执行代码遇到了continue，当次循环停止，下次循环继续，continue后面的代码不再执行
+    *               break;//停止  代码执行的break，循环停止。i++也不在执行了
+    *           }
+    *
+    *           i++和++i的区别，++i是先累加后运算,i++先运算后累加
+    *
+    *       2 while 条件循环,只要符合条件我就循环
+    *           while(循环的条件){
+    *               循环体
+    *           }
+    *
+    *       3 for in  是用来遍历对象的,循环的次数跟对象有点多少组属性相同
+    *           for(var attr in obj){
+    *
+    *           }
+    *
+    *
+    *
+    * */
+    /*for(var i=0; i<10; i++){
+        //i = i+1
+        console.log(i);//0-9
+    }
+    console.log(i); //10
+*/
+
+    for(var i = 0; i<9; i++){
+        //debugger; //调试
+        if(i<=5){
+            i += 3;
+            continue;
+        }
+        //console.log(i); //9
+        i+=5; //12
+        break;
+    }
+    //console.log(i);
+    //9 12    2 5    8 11  6 9     12
+
+   /* var j = 0;
+    while(j<5){
+    console.log(j);
+    //j++;
+    }*/
+
+    var obj = {
+        name: 'tianxi', //obj['name']
+        age : 30,
+        height : '170cm',
+        weight : '80kg',
+        hansomeboy: 'ranran'
+    }
+
+
+    //obj.girl = 'null';
+    for(var key in obj){ //你要遍历的对象
+        //debugger;
+        console.log(key); //同学疑惑key
+        console.log(obj[key]);
+        //console.log();
+    }
+    //属性是字符串类型的
+
+</script>

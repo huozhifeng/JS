@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 冒泡排序
+    //
+    var ary = [3, 2, 5, 4, 1]; //
+    /*第一轮* i=0;/  //length-1-0次
+     // 2,3,5,4,1 第一次比较3和2比较，3和2交换位置
+     // 2,3,5,4,1 第二次比较3和5比较
+     // 2,3,4,5,1 第三次比较5和4
+     // 2,3,4,1,5 第四次比较5和1 交换位置
+     //经过第一轮比较之后数组变成2,3,4,1,5
+     /*第二轮*///i=1 length-1-i ==>3;
+
+    /*
+     *    2，3，4，1，5 第二轮第一次
+     *    2,3,4,1,5  第二轮第二次
+     *    2,3,1,4,5  第二轮第三次,到现在我们已经有两个最大值放到末尾了
+     *
+     * */
+    /*第三轮*/ // i=2  length-1-i ==>2
+    /*
+     *    2,3,1,4,5 第三轮第一次
+     *    2,1,3,4,5 第三轮第二次
+     *
+     *
+     * */
+    /*第四轮*/ // i=3 length-1-i ==> 1
+    /*
+     *    1,2,3,4,5 第四轮第一次
+     * */
+
+
+    //通过第一轮的两两比较，把数组中的这一轮的最大值放到了最后的位置,第二轮就会把
+    function bubbleSort(ary) {
+        var positionChangeflag = false;
+        for (var i = 0; i < ary.length -1; i++) {  //轮数,每一轮比较都会把当前轮的最大值放到末尾
+            for (var j = 0; j < ary.length - 1 - i; j++) { //每一次循环都会把最大值放到末尾
+                if (ary[j] > ary[j + 1]) {
+                    positionChangeflag = true;
+                    var temp = ary[j];
+                    ary[j] = ary[j + 1];
+                    ary[j + 1] = temp;
+                }
+            }
+            //我要在每次比较的循环之后判断是否有位置变化，如果有说明我下一轮比较还有必要进行下去，如果没有，说明位置已经排好，下一轮的循环就没有必要进行了
+            if(positionChangeflag==true){ //说明发生过位置交换，需要继续进行，我们需要把标识变量恢复成初始值，才不会影响判断是否发生了位置变化
+                positionChangeflag = false;
+            }else{ //说明没有发生过位置交换，那么下一轮循环就没有必要进行了
+                break;
+            }
+        }
+        return ary;
+    }
+    console.log(bubbleSort(ary));
+
+</script>
